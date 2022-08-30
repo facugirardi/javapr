@@ -9,7 +9,6 @@ import java.sql.*;
 
 public class profileLoginWindow extends javax.swing.JFrame {
 
-
     public profileLoginWindow() {
         initComponents();
         setColor(btn_3); 
@@ -552,12 +551,14 @@ public class profileLoginWindow extends javax.swing.JFrame {
         
         sSQL = "INSERT INTO users(name, password)" + "VALUES(?, ?)";
         
+        //if(user already exists){
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setString(1, name);
             pst.setString(2, pass);
             
             int n = pst.executeUpdate();
+            
             if(n>0){
                 JOptionPane.showMessageDialog(null, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -565,6 +566,10 @@ public class profileLoginWindow extends javax.swing.JFrame {
         } catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
+        //}
+        
+        userText.setText("");
+        passText.setText("");
     }//GEN-LAST:event_registerButtonActionPerformed
 
  
