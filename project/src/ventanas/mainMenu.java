@@ -3,7 +3,6 @@ package ventanas;
 import java.awt.Color;
 import javax.swing.JPanel;
 
-
 public class mainMenu extends javax.swing.JFrame {
 
 
@@ -417,7 +416,7 @@ public class mainMenu extends javax.swing.JFrame {
         jLabel4.setText("Si todavia no te registraste, ¿Qué estás esperando?");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 550, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 950, 540));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -432,6 +431,11 @@ public class mainMenu extends javax.swing.JFrame {
         setColor(btn_3); 
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_1,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_1, ind_4, ind_5, ind_6});
+        profileLoginWindow pw = new profileLoginWindow();
+        
+        
+        pw.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn_3MousePressed
 
     private void btn_4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MousePressed

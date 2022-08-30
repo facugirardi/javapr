@@ -2,18 +2,21 @@ package ventanas;
 
 import java.awt.Color;
 import javax.swing.JPanel;
+import files.ConexionDB;
+import javax.swing.*;
+import java.util.*;
+import java.sql.*;
+
+public class profileLoginWindow extends javax.swing.JFrame {
 
 
-public class profileWindow extends javax.swing.JFrame {
-
-
-    public profileWindow() {
+    public profileLoginWindow() {
         initComponents();
         setColor(btn_3); 
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_1,btn_2,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_2, ind_4, ind_5, ind_6});
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,6 +45,12 @@ public class profileWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         sideTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        passText = new javax.swing.JTextField();
+        loginButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        userText = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        registerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -411,6 +420,52 @@ public class profileWindow extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        passText.setBackground(new java.awt.Color(18, 40, 67));
+        passText.setForeground(new java.awt.Color(255, 255, 255));
+        passText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passTextActionPerformed(evt);
+            }
+        });
+        jPanel1.add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 140, -1));
+
+        loginButton.setBackground(new java.awt.Color(204, 204, 204));
+        loginButton.setForeground(new java.awt.Color(0, 0, 0));
+        loginButton.setText("Iniciar Sesion");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 100, -1));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Contraseña");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 70, -1));
+
+        userText.setBackground(new java.awt.Color(18, 40, 67));
+        userText.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 140, -1));
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Usuario");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 50, -1));
+
+        registerButton.setBackground(new java.awt.Color(204, 204, 204));
+        registerButton.setForeground(new java.awt.Color(0, 0, 0));
+        registerButton.setText("Registrarse");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 100, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
         pack();
@@ -477,6 +532,41 @@ public class profileWindow extends javax.swing.JFrame {
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
     }//GEN-LAST:event_btn_6MousePressed
 
+    private void passTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passTextActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        ConexionDB mysql = new ConexionDB();
+        Connection cn = mysql.conectar();
+        
+        String name, pass = "";
+        String sSQL = "";
+        
+        name = userText.getText();
+        pass = passText.getText();
+        
+        sSQL = "INSERT INTO users(name, password)" + "VALUES(?, ?)";
+        
+        try{
+            PreparedStatement pst = cn.prepareStatement(sSQL);
+            pst.setString(1, name);
+            pst.setString(2, pass);
+            
+            int n = pst.executeUpdate();
+            if(n>0){
+                JOptionPane.showMessageDialog(null, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_registerButtonActionPerformed
+
  
     public static void main(String args[]) {
         try {
@@ -487,17 +577,17 @@ public class profileWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(profileLoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(profileLoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(profileLoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(profileLoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new profileWindow().setVisible(true);
+                new profileLoginWindow().setVisible(true);
             }
         });
     }
@@ -538,12 +628,18 @@ public class profileWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JTextField passText;
+    private javax.swing.JButton registerButton;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel sideTitle;
     private javax.swing.JLabel sideTitle1;
     private javax.swing.JPanel topPanel;
+    private javax.swing.JTextField userText;
     // End of variables declaration//GEN-END:variables
 }
