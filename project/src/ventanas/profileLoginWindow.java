@@ -481,6 +481,11 @@ public class profileLoginWindow extends javax.swing.JFrame {
         setColor(btn_1); 
         ind_1.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_4, ind_5, ind_6});
+        
+        mainMenu mm = new mainMenu();
+        mm.setVisible(true);
+
+        dispose();
     }//GEN-LAST:event_btn_1MousePressed
 
     private void btn_3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MousePressed
@@ -540,6 +545,32 @@ public class profileLoginWindow extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
 
+        String user = userText.getText();
+        String password = passText.getText();
+        
+        try {
+            ConexionDB mysql = new ConexionDB();
+            Connection cn = mysql.conectar();
+
+            PreparedStatement st = (PreparedStatement) cn.prepareStatement("SELECT name, password FROM users WHERE name = ? and password = ?");
+
+            st.setString(1, user);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
+            
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Inicio de Sesión", JOptionPane.INFORMATION_MESSAGE);
+                profileWindow pw2 = new profileWindow();
+                pw2.setVisible(true);
+                dispose();
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos", "Login Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }   
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
