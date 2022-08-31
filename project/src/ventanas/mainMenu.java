@@ -116,6 +116,7 @@ public class mainMenu extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Inicio");
 
@@ -127,7 +128,7 @@ public class mainMenu extends javax.swing.JFrame {
                 .addComponent(ind_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel8)
-                .addGap(0, 53, Short.MAX_VALUE))
+                .addGap(0, 52, Short.MAX_VALUE))
         );
         btn_1Layout.setVerticalGroup(
             btn_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,6 +167,7 @@ public class mainMenu extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("ChatBot");
 
@@ -177,7 +179,7 @@ public class mainMenu extends javax.swing.JFrame {
                 .addComponent(ind_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel9)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
         btn_2Layout.setVerticalGroup(
             btn_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,6 +215,7 @@ public class mainMenu extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Perfil");
 
@@ -224,7 +227,7 @@ public class mainMenu extends javax.swing.JFrame {
                 .addComponent(ind_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel10)
-                .addGap(0, 55, Short.MAX_VALUE))
+                .addGap(0, 52, Short.MAX_VALUE))
         );
         btn_3Layout.setVerticalGroup(
             btn_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,6 +263,7 @@ public class mainMenu extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Planes");
 
@@ -271,7 +275,7 @@ public class mainMenu extends javax.swing.JFrame {
                 .addComponent(ind_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel11)
-                .addGap(0, 48, Short.MAX_VALUE))
+                .addGap(0, 47, Short.MAX_VALUE))
         );
         btn_4Layout.setVerticalGroup(
             btn_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,6 +316,7 @@ public class mainMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("VIP");
 
@@ -365,6 +370,7 @@ public class mainMenu extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Otros");
 
@@ -376,7 +382,7 @@ public class mainMenu extends javax.swing.JFrame {
                 .addComponent(ind_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel2)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         btn_6Layout.setVerticalGroup(
             btn_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,7 +397,7 @@ public class mainMenu extends javax.swing.JFrame {
 
         side_pane.add(btn_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, -1, 40));
 
-        sideTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sideTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sideTitle.setForeground(new java.awt.Color(255, 255, 255));
         sideTitle.setText("HomeFitness");
         side_pane.add(sideTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
@@ -408,13 +414,13 @@ public class mainMenu extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Bienvenido a Home Fitness App");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 480, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 480, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Si todavia no te registraste, ¿Qué estás esperando?");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 550, -1));
+        jLabel4.setText("Tu aplicación preferida de Fitness");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 360, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 

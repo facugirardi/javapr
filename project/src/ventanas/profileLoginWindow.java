@@ -415,7 +415,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
 
         sidePanel.add(btn_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, -1, 40));
 
-        sideTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sideTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sideTitle.setForeground(new java.awt.Color(255, 255, 255));
         sideTitle.setText("HomeFitness");
         sidePanel.add(sideTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
@@ -429,6 +429,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loginButton.setBackground(new java.awt.Color(204, 204, 204));
+        loginButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         loginButton.setForeground(new java.awt.Color(0, 0, 0));
         loginButton.setText("Iniciar Sesion");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -436,7 +437,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 100, -1));
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 272, 110, 30));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -446,15 +447,16 @@ public class profileLoginWindow extends javax.swing.JFrame {
 
         userText.setBackground(new java.awt.Color(18, 40, 67));
         userText.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 150, -1));
+        jPanel1.add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 150, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Usuario");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, 20));
 
         registerButton.setBackground(new java.awt.Color(204, 204, 204));
+        registerButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         registerButton.setForeground(new java.awt.Color(0, 0, 0));
         registerButton.setText("Registrarse");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -462,11 +464,11 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 registerButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 100, -1));
+        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 272, 110, 30));
 
         passText.setBackground(new java.awt.Color(18, 40, 67));
         passText.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 150, -1));
+        jPanel1.add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 150, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
@@ -554,43 +556,48 @@ public class profileLoginWindow extends javax.swing.JFrame {
         
         sSQL = "INSERT INTO users(name, password)" + "VALUES(?, ?)";
         
-        try{
-            String SQL = "SELECT name FROM users";
-            PreparedStatement pstmt = cn.prepareStatement(SQL);
-            ResultSet rs = pstmt.executeQuery();            
-            
-            while (rs.next()) {
-            String username = rs.getString("name");
-            listUsers.add(username);
-            }
-            
-            boolean userVerif = listUsers.contains(name);
-                    
-            if (userVerif){
-            JOptionPane.showMessageDialog(null, "Este usuario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            
-            else{
-                try{
-                    PreparedStatement pst = cn.prepareStatement(sSQL);
-                    pst.setString(1, name);
-                    pst.setString(2, pass);
+        if (name.isEmpty() || pass.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No ingresaste ningún dato.", "Error", JOptionPane.ERROR_MESSAGE);
 
-                    int n = pst.executeUpdate();
+    }   else {
+            try{
+             String SQL = "SELECT name FROM users";
+             PreparedStatement pstmt = cn.prepareStatement(SQL);
+             ResultSet rs = pstmt.executeQuery();            
 
-                    if(n>0){
-                        JOptionPane.showMessageDialog(null, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
-                    }
+             while (rs.next()) {
+             String username = rs.getString("name");
+             listUsers.add(username);
+             }
 
-                } catch(SQLException ex){
-                    JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            
-        } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Hubo un error en el registro." + ex, "Error", JOptionPane.ERROR_MESSAGE);
+             boolean userVerif = listUsers.contains(name);
+
+             if (userVerif){
+             JOptionPane.showMessageDialog(null, "Este usuario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+             }
+
+             else{
+                 try{
+                     PreparedStatement pst = cn.prepareStatement(sSQL);
+                     pst.setString(1, name);
+                     pst.setString(2, pass);
+
+                     int n = pst.executeUpdate();
+
+                     if(n>0){
+                         JOptionPane.showMessageDialog(null, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                     }
+
+                 } catch(SQLException ex){
+                     JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                 }
+             }
+
+         } catch (SQLException ex){
+             JOptionPane.showMessageDialog(null, "Hubo un error en el registro." + ex, "Error", JOptionPane.ERROR_MESSAGE);
+         }
+
         }
-        
                 
         userText.setText("");
         passText.setText("");
