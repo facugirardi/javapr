@@ -8,6 +8,8 @@ import java.util.*;
 import java.sql.*;
 
 public class profileLoginWindow extends javax.swing.JFrame {
+    
+    private final String SQL_SELECT_USER = "SELECT * FROM users WHERE";
 
     public profileLoginWindow() {
         initComponents();
@@ -44,12 +46,12 @@ public class profileLoginWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         sideTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        passText = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         userText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         registerButton = new javax.swing.JButton();
+        passText = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -132,6 +134,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Inicio");
 
@@ -143,7 +146,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 .addComponent(ind_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel8)
-                .addGap(0, 53, Short.MAX_VALUE))
+                .addGap(0, 52, Short.MAX_VALUE))
         );
         btn_1Layout.setVerticalGroup(
             btn_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,6 +185,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("ChatBot");
 
@@ -193,7 +197,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 .addComponent(ind_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel9)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
         btn_2Layout.setVerticalGroup(
             btn_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,6 +233,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Perfil");
 
@@ -240,7 +245,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 .addComponent(ind_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel10)
-                .addGap(0, 55, Short.MAX_VALUE))
+                .addGap(0, 52, Short.MAX_VALUE))
         );
         btn_3Layout.setVerticalGroup(
             btn_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,6 +281,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Planes");
 
@@ -287,7 +293,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 .addComponent(ind_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel11)
-                .addGap(0, 48, Short.MAX_VALUE))
+                .addGap(0, 47, Short.MAX_VALUE))
         );
         btn_4Layout.setVerticalGroup(
             btn_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,6 +334,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("VIP");
 
@@ -381,6 +388,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGap(0, 43, Short.MAX_VALUE)
         );
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Otros");
 
@@ -392,7 +400,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 .addComponent(ind_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel2)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         btn_6Layout.setVerticalGroup(
             btn_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,15 +428,6 @@ public class profileLoginWindow extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        passText.setBackground(new java.awt.Color(18, 40, 67));
-        passText.setForeground(new java.awt.Color(255, 255, 255));
-        passText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passTextActionPerformed(evt);
-            }
-        });
-        jPanel1.add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 140, -1));
-
         loginButton.setBackground(new java.awt.Color(204, 204, 204));
         loginButton.setForeground(new java.awt.Color(0, 0, 0));
         loginButton.setText("Iniciar Sesion");
@@ -437,23 +436,23 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 100, -1));
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 100, -1));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 80, -1));
 
         userText.setBackground(new java.awt.Color(18, 40, 67));
         userText.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 140, -1));
+        jPanel1.add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 150, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Usuario");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 50, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, 20));
 
         registerButton.setBackground(new java.awt.Color(204, 204, 204));
         registerButton.setForeground(new java.awt.Color(0, 0, 0));
@@ -463,13 +462,19 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 registerButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 100, -1));
+        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 100, -1));
+
+        passText.setBackground(new java.awt.Color(18, 40, 67));
+        passText.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 150, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    
     private void btn_1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MousePressed
         setColor(btn_1); 
         ind_1.setOpaque(true);
@@ -531,15 +536,13 @@ public class profileLoginWindow extends javax.swing.JFrame {
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
     }//GEN-LAST:event_btn_6MousePressed
 
-    private void passTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passTextActionPerformed
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
 
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        List listUsers = new LinkedList();
+
         ConexionDB mysql = new ConexionDB();
         Connection cn = mysql.conectar();
         
@@ -551,23 +554,44 @@ public class profileLoginWindow extends javax.swing.JFrame {
         
         sSQL = "INSERT INTO users(name, password)" + "VALUES(?, ?)";
         
-        //if(user already exists){
         try{
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setString(1, name);
-            pst.setString(2, pass);
+            String SQL = "SELECT name FROM users";
+            PreparedStatement pstmt = cn.prepareStatement(SQL);
+            ResultSet rs = pstmt.executeQuery();            
             
-            int n = pst.executeUpdate();
-            
-            if(n>0){
-                JOptionPane.showMessageDialog(null, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
+            while (rs.next()) {
+            String username = rs.getString("name");
+            listUsers.add(username);
             }
             
-        } catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            boolean userVerif = listUsers.contains(name);
+                    
+            if (userVerif){
+            JOptionPane.showMessageDialog(null, "Este usuario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            else{
+                try{
+                    PreparedStatement pst = cn.prepareStatement(sSQL);
+                    pst.setString(1, name);
+                    pst.setString(2, pass);
+
+                    int n = pst.executeUpdate();
+
+                    if(n>0){
+                        JOptionPane.showMessageDialog(null, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+                } catch(SQLException ex){
+                    JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
+        } catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Hubo un error en el registro." + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //}
         
+                
         userText.setText("");
         passText.setText("");
     }//GEN-LAST:event_registerButtonActionPerformed
@@ -639,7 +663,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginButton;
-    private javax.swing.JTextField passText;
+    private javax.swing.JPasswordField passText;
     private javax.swing.JButton registerButton;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel sideTitle;

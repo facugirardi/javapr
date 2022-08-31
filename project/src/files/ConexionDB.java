@@ -14,11 +14,10 @@ public class ConexionDB {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conectar = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root","");
-            JOptionPane.showMessageDialog(null, "Conexion Exitosa", "Conexion", JOptionPane.INFORMATION_MESSAGE);
               
         } 
         catch(ClassNotFoundException | SQLException e){
-            JOptionPane.showMessageDialog(null, "Conexion Fallida" + e, "Conexion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Conexion a la base de datos fallida." + e, "Conexion Fallida", JOptionPane.ERROR_MESSAGE);
         
         }
     return conectar;   
