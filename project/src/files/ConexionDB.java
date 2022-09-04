@@ -3,13 +3,10 @@ package files;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author facug
- */
 public class ConexionDB {
     Connection conectar = null;
-    
+    private final String SQL_SESSIONS_SELECT = "SELECT * FROM sesiones";
+
     public Connection conectar(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -22,4 +19,29 @@ public class ConexionDB {
         }
     return conectar;   
     }
+    
+       public boolean checkSession(){  
+        ResultSet rs = null;
+        try{
+            ConexionDB mysql = new ConexionDB();
+            Connection cn = mysql.conectar();
+
+            PreparedStatement st = cn.prepareStatement(SQL_SESSIONS_SELECT);
+
+            rs = st.executeQuery();
+            cn.close();
+            if(rs.next()){
+                return true;
+            }
+           
+        }    
+        catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }   
+        
+        return false;
+    }
+
+    
+    
 }

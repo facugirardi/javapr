@@ -8,8 +8,9 @@ import java.util.*;
 import java.sql.*;
 
 public class profileWindow extends javax.swing.JFrame {
-    
-    private final String SQL_SELECT_USER = "SELECT * FROM users WHERE";
+    ConexionDB mysql = new ConexionDB();
+    boolean sesion = mysql.checkSession();
+
 
     public profileWindow() {
         initComponents();
@@ -46,6 +47,7 @@ public class profileWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         sideTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        wcTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -67,11 +69,8 @@ public class profileWindow extends javax.swing.JFrame {
 
         closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Exit_25px.png"))); // NOI18N
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeButtonMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                closeButtonMousePressed(evt);
+                close(evt);
             }
         });
 
@@ -421,12 +420,17 @@ public class profileWindow extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        wcTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        wcTitle.setForeground(new java.awt.Color(0, 0, 0));
+        wcTitle.setText("Bienvenido");
+        jPanel1.add(wcTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 860, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
     
     private void btn_1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MousePressed
         setColor(btn_1); 
@@ -471,14 +475,6 @@ public class profileWindow extends javax.swing.JFrame {
         this.setLocation(x-xx,y-xy);
     }//GEN-LAST:event_topPanelMouseDragged
 
-    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
-    }//GEN-LAST:event_closeButtonMouseClicked
-
-    private void closeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMousePressed
-                
-        dispose();  
-    }//GEN-LAST:event_closeButtonMousePressed
-
     private void btn_2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MousePressed
     }//GEN-LAST:event_btn_2MousePressed
 
@@ -493,6 +489,23 @@ public class profileWindow extends javax.swing.JFrame {
         ind_6.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
     }//GEN-LAST:event_btn_6MousePressed
+
+    private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
+        ConexionDB mysql = new ConexionDB();
+        Connection cn = mysql.conectar();
+        try{
+        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
+        st.executeUpdate();
+        cn.close();
+        }
+        catch(SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        
+        
+        
+        System.exit(0);
+    }//GEN-LAST:event_close
 
  
     public static void main(String args[]) {
@@ -562,5 +575,6 @@ public class profileWindow extends javax.swing.JFrame {
     private javax.swing.JLabel sideTitle;
     private javax.swing.JLabel sideTitle1;
     private javax.swing.JPanel topPanel;
+    private javax.swing.JLabel wcTitle;
     // End of variables declaration//GEN-END:variables
 }

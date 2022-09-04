@@ -1,16 +1,22 @@
 package ventanas;
 
+import files.ConexionDB;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JPanel;
+import java.sql.*;
+import java.util.*;
 
 public class mainMenu extends javax.swing.JFrame {
+    ConexionDB mysql = new ConexionDB();
+    boolean sesion = mysql.checkSession();
 
 
     public mainMenu() {
         initComponents();
         setColor(btn_1); 
         ind_1.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_4}, new JPanel[]{ind_2,ind_3, ind_4});
+        resetColor(new JPanel[]{btn_2,btn_3,btn_4}, new JPanel[]{ind_2,ind_3, ind_4}); 
     }
 
  
@@ -65,11 +71,8 @@ public class mainMenu extends javax.swing.JFrame {
 
         closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Exit_25px.png"))); // NOI18N
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeButtonMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                closeButtonMousePressed(evt);
+                close(evt);
             }
         });
 
@@ -438,8 +441,6 @@ public class mainMenu extends javax.swing.JFrame {
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_1,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_1, ind_4, ind_5, ind_6});
         
-
-        
         profileLoginWindow pw = new profileLoginWindow();
         pw.setVisible(true);
         dispose();
@@ -471,14 +472,6 @@ public class mainMenu extends javax.swing.JFrame {
         this.setLocation(x-xx,y-xy);
     }//GEN-LAST:event_jPanel2MouseDragged
 
-    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
-    }//GEN-LAST:event_closeButtonMouseClicked
-
-    private void closeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMousePressed
-                
-        System.exit(0);
-    }//GEN-LAST:event_closeButtonMousePressed
-
     private void btn_2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MousePressed
     }//GEN-LAST:event_btn_2MousePressed
 
@@ -493,6 +486,23 @@ public class mainMenu extends javax.swing.JFrame {
         ind_6.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
     }//GEN-LAST:event_btn_6MousePressed
+
+    private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
+        ConexionDB mysql = new ConexionDB();
+        Connection cn = mysql.conectar();
+        try{
+        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
+        st.executeUpdate();
+        cn.close();
+        }
+        catch(SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        
+        
+        
+        System.exit(0);
+    }//GEN-LAST:event_close
 
  
     public static void main(String args[]) {

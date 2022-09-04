@@ -10,7 +10,11 @@ import java.sql.*;
 public class profileLoginWindow extends javax.swing.JFrame {
     
     private final String SQL_SELECT_USER = "SELECT * FROM users WHERE";
+    ConexionDB mysql = new ConexionDB();
+    boolean sesion = mysql.checkSession();
 
+    
+    
     public profileLoginWindow() {
         initComponents();
         setColor(btn_3); 
@@ -73,11 +77,8 @@ public class profileLoginWindow extends javax.swing.JFrame {
 
         closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Exit_25px.png"))); // NOI18N
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeButtonMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                closeButtonMousePressed(evt);
+                close(evt);
             }
         });
 
@@ -474,8 +475,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+        
     
     private void btn_1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MousePressed
         setColor(btn_1); 
@@ -520,14 +520,6 @@ public class profileLoginWindow extends javax.swing.JFrame {
         this.setLocation(x-xx,y-xy);
     }//GEN-LAST:event_topPanelMouseDragged
 
-    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
-    }//GEN-LAST:event_closeButtonMouseClicked
-
-    private void closeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMousePressed
-                
-        dispose();  
-    }//GEN-LAST:event_closeButtonMousePressed
-
     private void btn_2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MousePressed
     }//GEN-LAST:event_btn_2MousePressed
 
@@ -562,6 +554,9 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Inicio de Sesión", JOptionPane.INFORMATION_MESSAGE);
                 profileWindow pw2 = new profileWindow();
                 pw2.setVisible(true);
+                PreparedStatement st2 = cn.prepareStatement("INSERT INTO sesiones(usuario, activo)" + "VALUES ('"+user+"', true)");
+                st2.executeUpdate();
+                cn.close();
                 dispose();
                 
             } else {
@@ -586,6 +581,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
         pass = passText.getText();
         
         sSQL = "INSERT INTO users(name, password)" + "VALUES(?, ?)";
+       
         
         if (name.isEmpty() || pass.isEmpty()){
             JOptionPane.showMessageDialog(null, "No ingresaste ningún dato.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -612,7 +608,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                      PreparedStatement pst = cn.prepareStatement(sSQL);
                      pst.setString(1, name);
                      pst.setString(2, pass);
-
+                     
                      int n = pst.executeUpdate();
 
                      if(n>0){
@@ -623,6 +619,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
                      JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
                  }
              }
+             cn.close();
 
          } catch (SQLException ex){
              JOptionPane.showMessageDialog(null, "Hubo un error en el registro." + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -633,6 +630,23 @@ public class profileLoginWindow extends javax.swing.JFrame {
         userText.setText("");
         passText.setText("");
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
+        ConexionDB mysql = new ConexionDB();
+        Connection cn = mysql.conectar();
+        try{
+        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
+        st.executeUpdate();
+        cn.close();
+        }
+        catch(SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        
+        
+        
+        System.exit(0);
+    }//GEN-LAST:event_close
 
  
     public static void main(String args[]) {
