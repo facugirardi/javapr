@@ -479,7 +479,7 @@ public class profileWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_2MousePressed
 
     private void btn_5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5MousePressed
-         setColor(btn_5); 
+        setColor(btn_5); 
         ind_5.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});
     }//GEN-LAST:event_btn_5MousePressed
@@ -496,7 +496,6 @@ public class profileWindow extends javax.swing.JFrame {
         try{
         PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
         st.executeUpdate();
-        cn.close();
         }
         catch(SQLException sqlException) {
             sqlException.printStackTrace();

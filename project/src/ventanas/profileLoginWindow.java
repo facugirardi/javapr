@@ -12,14 +12,44 @@ public class profileLoginWindow extends javax.swing.JFrame {
     private final String SQL_SELECT_USER = "SELECT * FROM users WHERE";
     ConexionDB mysql = new ConexionDB();
     boolean sesion = mysql.checkSession();
-
-    
     
     public profileLoginWindow() {
         initComponents();
         setColor(btn_3); 
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_1,btn_2,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_2, ind_4, ind_5, ind_6});
+        
+                if(sesion){
+            btn_4.setEnabled(true);
+            btn_2.setEnabled(true);
+            btn_5.setEnabled(true);
+            btn_6.setEnabled(true);
+            jLabel11.setVisible(true);
+            jLabel9.setVisible(true);
+            jLabel1.setVisible(true);
+            jLabel2.setVisible(true);
+            ind_4.setVisible(true);
+            ind_2.setVisible(true);
+            ind_5.setVisible(true);
+            ind_6.setVisible(true);
+
+        }
+        else{
+            btn_4.setEnabled(false);
+            btn_2.setEnabled(false);
+            btn_5.setEnabled(false);
+            btn_6.setEnabled(false);
+            jLabel11.setVisible(false);
+            jLabel9.setVisible(false);
+            jLabel1.setVisible(false);
+            jLabel2.setVisible(false);
+            ind_4.setVisible(false);
+            ind_2.setVisible(false);
+            ind_5.setVisible(false);
+            ind_6.setVisible(false);
+
+        }
+
     }
     
     @SuppressWarnings("unchecked")
@@ -495,16 +525,18 @@ public class profileLoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_3MousePressed
 
     private void btn_4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MousePressed
+        if(sesion){
         setColor(btn_4); 
         ind_4.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6});
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6});}
     }//GEN-LAST:event_btn_4MousePressed
 
     private void btn_2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MouseReleased
         // TODO add your handling code here:
-          setColor(btn_2); 
+        if(sesion){
+        setColor(btn_2); 
         ind_2.setOpaque(true);
-        resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});
+        resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});}
     }//GEN-LAST:event_btn_2MouseReleased
                                                     
 
@@ -524,15 +556,17 @@ public class profileLoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_2MousePressed
 
     private void btn_5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5MousePressed
-         setColor(btn_5); 
+        if(sesion){
+        setColor(btn_5); 
         ind_5.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});}
     }//GEN-LAST:event_btn_5MousePressed
 
     private void btn_6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_6MousePressed
+        if(sesion){
         setColor(btn_6); 
         ind_6.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});}
     }//GEN-LAST:event_btn_6MousePressed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
@@ -556,7 +590,6 @@ public class profileLoginWindow extends javax.swing.JFrame {
                 pw2.setVisible(true);
                 PreparedStatement st2 = cn.prepareStatement("INSERT INTO sesiones(usuario, activo)" + "VALUES ('"+user+"', true)");
                 st2.executeUpdate();
-                cn.close();
                 dispose();
                 
             } else {
@@ -619,7 +652,6 @@ public class profileLoginWindow extends javax.swing.JFrame {
                      JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
                  }
              }
-             cn.close();
 
          } catch (SQLException ex){
              JOptionPane.showMessageDialog(null, "Hubo un error en el registro." + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -637,7 +669,6 @@ public class profileLoginWindow extends javax.swing.JFrame {
         try{
         PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
         st.executeUpdate();
-        cn.close();
         }
         catch(SQLException sqlException) {
             sqlException.printStackTrace();

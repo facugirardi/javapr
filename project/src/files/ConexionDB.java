@@ -20,7 +20,8 @@ public class ConexionDB {
     return conectar;   
     }
     
-       public boolean checkSession(){  
+    
+    public boolean checkSession(){  
         ResultSet rs = null;
         try{
             ConexionDB mysql = new ConexionDB();
@@ -29,7 +30,6 @@ public class ConexionDB {
             PreparedStatement st = cn.prepareStatement(SQL_SESSIONS_SELECT);
 
             rs = st.executeQuery();
-            cn.close();
             if(rs.next()){
                 return true;
             }
