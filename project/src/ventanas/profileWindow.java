@@ -10,13 +10,31 @@ import java.sql.*;
 public class profileWindow extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
     boolean sesion = mysql.checkSession();
+    List userList = new LinkedList();
 
+    private final String SQL_SELECT_USER = "SELECT usuario FROM sesiones";
 
     public profileWindow() {
         initComponents();
         setColor(btn_3); 
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_1,btn_2,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_2, ind_4, ind_5, ind_6});
+        
+        try{
+        Connection cn = mysql.conectar();
+        PreparedStatement st = cn.prepareStatement(SQL_SELECT_USER);
+        ResultSet rs = st.executeQuery();
+            
+        while (rs.next()) {
+             String user = rs.getString("usuario");
+             wcTitle.setText("Bienvenido de vuelta, "+user+"!");
+        }
+        
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+
     }
     
     @SuppressWarnings("unchecked")
@@ -48,6 +66,14 @@ public class profileWindow extends javax.swing.JFrame {
         sideTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         wcTitle = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        objetivo = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        peso = new javax.swing.JTextField();
+        altura = new javax.swing.JTextField();
+        guardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -416,15 +442,62 @@ public class profileWindow extends javax.swing.JFrame {
         getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         wcTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        wcTitle.setForeground(new java.awt.Color(0, 0, 0));
-        wcTitle.setText("Bienvenido");
-        jPanel1.add(wcTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 860, -1));
+        wcTitle.setForeground(new java.awt.Color(51, 51, 51));
+        wcTitle.setText("Ahora ya podes utilizar todas las funciones que HomeFitness te ofrece!");
+        jPanel1.add(wcTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 860, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("Tus Datos:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+
+        objetivo.setBackground(new java.awt.Color(204, 204, 204));
+        objetivo.setForeground(new java.awt.Color(51, 51, 51));
+        objetivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adelgazar", "Mantener", "Subir" }));
+        objetivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                objetivoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(objetivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Altura (CM)");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setText("Objetivo");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("Peso (KG)");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+
+        peso.setBackground(new java.awt.Color(18, 40, 67));
+        peso.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 240, 70, -1));
+
+        altura.setBackground(new java.awt.Color(18, 40, 67));
+        altura.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 240, 70, -1));
+
+        guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
@@ -506,6 +579,14 @@ public class profileWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_close
 
+    private void objetivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_objetivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_objetivoActionPerformed
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarActionPerformed
+
  
     public static void main(String args[]) {
         try {
@@ -550,6 +631,7 @@ public class profileWindow extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField altura;
     private javax.swing.JPanel btn_1;
     private javax.swing.JPanel btn_2;
     private javax.swing.JPanel btn_3;
@@ -557,6 +639,7 @@ public class profileWindow extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
+    private javax.swing.JButton guardar;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
@@ -567,9 +650,15 @@ public class profileWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> objetivo;
+    private javax.swing.JTextField peso;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel sideTitle;
     private javax.swing.JLabel sideTitle1;

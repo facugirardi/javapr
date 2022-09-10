@@ -587,10 +587,10 @@ public class profileLoginWindow extends javax.swing.JFrame {
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Inicio de Sesión", JOptionPane.INFORMATION_MESSAGE);
                 profileWindow pw2 = new profileWindow();
-                pw2.setVisible(true);
                 PreparedStatement st2 = cn.prepareStatement("INSERT INTO sesiones(usuario, activo)" + "VALUES ('"+user+"', true)");
                 st2.executeUpdate();
                 dispose();
+                pw2.setVisible(true);
                 
             } else {
                 JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos", "Login Error", JOptionPane.ERROR_MESSAGE);
