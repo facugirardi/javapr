@@ -1,51 +1,33 @@
 package ventanas;
 
-import java.awt.Color;
-import javax.swing.JPanel;
 import files.ConexionDB;
-import javax.swing.*;
-import java.util.*;
+import java.awt.Color;
+import java.sql.Connection;
+import javax.swing.JPanel;
 import java.sql.*;
+import java.util.*;
 
-public class profileWindow extends javax.swing.JFrame {
+public class planesWin extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
     boolean sesion = mysql.checkSession();
-    List userList = new LinkedList();
 
-    private final String SQL_SELECT_USER = "SELECT usuario FROM sesiones";
-    
-    public profileWindow() {
+
+    public planesWin() {
         initComponents();
-        setColor(btn_3); 
-        ind_3.setOpaque(true);
-        resetColor(new JPanel[]{btn_1,btn_2,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_2, ind_4, ind_5, ind_6});
-        alertLabel.setText("");
-
-        try{
-        Connection cn = mysql.conectar();
-        PreparedStatement st = cn.prepareStatement(SQL_SELECT_USER);
-        ResultSet rs = st.executeQuery();
-            
-        while (rs.next()) {
-             String user = rs.getString("usuario");
-             wcTitle.setText("Bienvenido de vuelta, "+user+"!");
-        }
-        
-        }
-        catch(SQLException sqlException){
-            sqlException.printStackTrace();
-        }
+        setColor(btn_4); 
+        ind_4.setOpaque(true);
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1, btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6}); 
 
     }
-    
+
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        topPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
-        sideTitle1 = new javax.swing.JLabel();
-        sidePanel = new javax.swing.JPanel();
+        side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -66,16 +48,11 @@ public class profileWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         sideTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        wcTitle = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        objetivoBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        pesoField = new javax.swing.JTextField();
-        alturaField = new javax.swing.JTextField();
-        guardar = new javax.swing.JButton();
-        alertLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -83,15 +60,15 @@ public class profileWindow extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        topPanel.setBackground(new java.awt.Color(18, 40, 67));
-        topPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        jPanel2.setBackground(new java.awt.Color(18, 40, 67));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                topPanelMouseDragged(evt);
+                jPanel2MouseDragged(evt);
             }
         });
-        topPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                topPanelMousePressed(evt);
+                jPanel2MousePressed(evt);
             }
         });
 
@@ -102,37 +79,27 @@ public class profileWindow extends javax.swing.JFrame {
             }
         });
 
-        sideTitle1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        sideTitle1.setForeground(new java.awt.Color(255, 255, 255));
-        sideTitle1.setText("Perfil");
-
-        javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
-        topPanel.setLayout(topPanelLayout);
-        topPanelLayout.setHorizontalGroup(
-            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
-                .addContainerGap(457, Short.MAX_VALUE)
-                .addComponent(sideTitle1)
-                .addGap(417, 417, 417)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(910, Short.MAX_VALUE)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
-        topPanelLayout.setVerticalGroup(
-            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topPanelLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(topPanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(sideTitle1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(topPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 950, 50));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 950, 50));
 
-        sidePanel.setBackground(new java.awt.Color(18, 40, 67));
-        sidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        side_pane.setBackground(new java.awt.Color(18, 40, 67));
+        side_pane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_1.setBackground(new java.awt.Color(18, 40, 67));
         btn_1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,7 +147,7 @@ public class profileWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidePanel.add(btn_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 120, -1));
+        side_pane.add(btn_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 120, -1));
 
         btn_2.setBackground(new java.awt.Color(18, 40, 67));
         btn_2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +198,7 @@ public class profileWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidePanel.add(btn_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 120, 40));
+        side_pane.add(btn_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 120, 40));
 
         btn_3.setBackground(new java.awt.Color(18, 40, 67));
         btn_3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -279,7 +246,7 @@ public class profileWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidePanel.add(btn_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 120, -1));
+        side_pane.add(btn_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 120, 40));
 
         btn_4.setBackground(new java.awt.Color(18, 40, 67));
         btn_4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -327,7 +294,7 @@ public class profileWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidePanel.add(btn_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 120, -1));
+        side_pane.add(btn_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 120, -1));
 
         btn_5.setBackground(new java.awt.Color(18, 40, 67));
         btn_5.setForeground(new java.awt.Color(255, 255, 255));
@@ -378,7 +345,7 @@ public class profileWindow extends javax.swing.JFrame {
                 .addGap(112, 112, 112))
         );
 
-        sidePanel.add(btn_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 120, 40));
+        side_pane.add(btn_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 120, 40));
         btn_5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btn_5MousePressed(evt);
@@ -434,144 +401,128 @@ public class profileWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        sidePanel.add(btn_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, -1, 40));
+        side_pane.add(btn_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, -1, 40));
 
         sideTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sideTitle.setForeground(new java.awt.Color(255, 255, 255));
         sideTitle.setText("HomeFitness");
-        sidePanel.add(sideTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        side_pane.add(sideTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
+        getContentPane().add(side_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        wcTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        wcTitle.setForeground(new java.awt.Color(51, 51, 51));
-        wcTitle.setText("Ahora ya podes utilizar todas las funciones que HomeFitness te ofrece!");
-        jPanel1.add(wcTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 860, -1));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Tus Datos:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Planes de Alimentación");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
 
-        objetivoBox.setBackground(new java.awt.Color(204, 204, 204));
-        objetivoBox.setForeground(new java.awt.Color(51, 51, 51));
-        objetivoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adelgazar", "Mantener", "Subir" }));
-        objetivoBox.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Planes de Ejercicios");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+
+        jButton1.setText("Descargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                objetivoBoxActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(objetivoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 150, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Altura (CM)");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setText("Objetivo");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Peso (KG)");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
-
-        pesoField.setBackground(new java.awt.Color(18, 40, 67));
-        pesoField.setForeground(new java.awt.Color(255, 255, 255));
-        pesoField.setText("0");
-        jPanel1.add(pesoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 240, 70, -1));
-
-        alturaField.setBackground(new java.awt.Color(18, 40, 67));
-        alturaField.setForeground(new java.awt.Color(255, 255, 255));
-        alturaField.setText("0");
-        jPanel1.add(alturaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 240, 70, -1));
-
-        guardar.setText("Actualizar");
-        guardar.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Descargar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, -1));
-        jPanel1.add(alertLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 360, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 150, 30));
+
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Se descargaran los planes elegidos especialmente para vos, según tus datos de usuario guardados.");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 840, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     private void btn_1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MousePressed
         setColor(btn_1); 
         ind_1.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_4, ind_5, ind_6});
-        
         mainMenu mm = new mainMenu();
         mm.setVisible(true);
 
         dispose();
+
     }//GEN-LAST:event_btn_1MousePressed
 
     private void btn_3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MousePressed
         setColor(btn_3); 
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_1,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_1, ind_4, ind_5, ind_6});
+        
+        profileWindow pwn = new profileWindow();
+        profileLoginWindow pw = new profileLoginWindow();
+        if(sesion){
+            pwn.setVisible(true);
+        }else{
+            pw.setVisible(true);
+        }
+        dispose();
     }//GEN-LAST:event_btn_3MousePressed
 
+
     private void btn_4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MousePressed
+       if(sesion){
         setColor(btn_4); 
         ind_4.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6});
-        
-        planesWin pm = new planesWin();
-        pm.setVisible(true);
-
-        dispose();
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6});}
 
     }//GEN-LAST:event_btn_4MousePressed
 
     private void btn_2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MouseReleased
-        // TODO add your handling code here:
-          setColor(btn_2); 
+        if(sesion){
+        setColor(btn_2); 
         ind_2.setOpaque(true);
-        resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});
+        resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});}
     }//GEN-LAST:event_btn_2MouseReleased
-                                                    
+                                     
 
     int xx,xy;
-    private void topPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topPanelMousePressed
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         xx = evt.getX();
         xy = evt.getY();
-    }//GEN-LAST:event_topPanelMousePressed
+    }//GEN-LAST:event_jPanel2MousePressed
 
-    private void topPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topPanelMouseDragged
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x-xx,y-xy);
-    }//GEN-LAST:event_topPanelMouseDragged
+    }//GEN-LAST:event_jPanel2MouseDragged
 
     private void btn_2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MousePressed
     }//GEN-LAST:event_btn_2MousePressed
 
     private void btn_5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5MousePressed
-        setColor(btn_5); 
+        if(sesion){
+        setColor(btn_5);
         ind_5.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});}
     }//GEN-LAST:event_btn_5MousePressed
 
     private void btn_6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_6MousePressed
+        if(sesion){
         setColor(btn_6); 
         ind_6.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});}
     }//GEN-LAST:event_btn_6MousePressed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
@@ -590,47 +541,13 @@ public class profileWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_close
 
-    private void objetivoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_objetivoBoxActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_objetivoBoxActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
-        
-        String objetivo = objetivoBox.getSelectedItem().toString();
-        int peso = 0;
-        int altura = 0;
-        
-        try{
-            peso = Integer.parseInt(pesoField.getText());
-            altura = Integer.parseInt(alturaField.getText());
-            try{
-                PreparedStatement st = cn.prepareStatement(SQL_SELECT_USER);
-                ResultSet rs = st.executeQuery();
-
-                while (rs.next()) {
-                    String user = rs.getString("usuario");
-                    try{
-                        PreparedStatement st2 = cn.prepareStatement("UPDATE users SET objetivo = '"+ objetivo +"',peso = " + peso + ", altura = " + altura + " WHERE name = '"+user+"'");
-                        System.out.println(st2);
-                        st2.executeUpdate();
-                        alertLabel.setText("Actualizado Correctamente");
-                        }
-                    catch(SQLException sqlException) {
-                            sqlException.printStackTrace();
-                        }
-                    }
-                }
-                catch(SQLException sqlException){
-                    sqlException.printStackTrace();
-                }
-        }catch(Exception e){
-            alertLabel.setText("Ingresaste un Dato Incorrecto");
-        }
-        
-
-    }//GEN-LAST:event_guardarActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
  
     public static void main(String args[]) {
@@ -642,17 +559,17 @@ public class profileWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(profileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new profileWindow().setVisible(true);
+                new planesWin().setVisible(true);
             }
         });
     }
@@ -676,8 +593,6 @@ public class profileWindow extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel alertLabel;
-    private javax.swing.JTextField alturaField;
     private javax.swing.JPanel btn_1;
     private javax.swing.JPanel btn_2;
     private javax.swing.JPanel btn_3;
@@ -685,13 +600,14 @@ public class profileWindow extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
-    private javax.swing.JButton guardar;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
     private javax.swing.JPanel ind_6;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -699,16 +615,11 @@ public class profileWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> objetivoBox;
-    private javax.swing.JTextField pesoField;
-    private javax.swing.JPanel sidePanel;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel sideTitle;
-    private javax.swing.JLabel sideTitle1;
-    private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel wcTitle;
+    private javax.swing.JPanel side_pane;
     // End of variables declaration//GEN-END:variables
 }

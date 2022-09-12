@@ -16,7 +16,7 @@ public class mainMenu extends javax.swing.JFrame {
         initComponents();
         setColor(btn_1); 
         ind_1.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_4}, new JPanel[]{ind_2,ind_3, ind_4}); 
+        resetColor(new JPanel[]{btn_2,btn_3,btn_4, btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_4, ind_5, ind_6}); 
         
         if(sesion){
             btn_4.setEnabled(true);
@@ -489,6 +489,12 @@ public class mainMenu extends javax.swing.JFrame {
         setColor(btn_4); 
         ind_4.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6});}
+       
+        planesWin pm = new planesWin();
+        pm.setVisible(true);
+
+        dispose();
+
 
     }//GEN-LAST:event_btn_4MousePressed
 
