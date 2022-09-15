@@ -16,7 +16,7 @@ public class profileWindow extends javax.swing.JFrame {
     
     public profileWindow() {
         initComponents();
-        setColor(btn_3); 
+        setColor(btn_3);  
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btn_1,btn_2,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_2, ind_4, ind_5, ind_6});
         alertLabel.setText("");
@@ -613,7 +613,6 @@ public class profileWindow extends javax.swing.JFrame {
                     String user = rs.getString("usuario");
                     try{
                         PreparedStatement st2 = cn.prepareStatement("UPDATE users SET objetivo = '"+ objetivo +"',peso = " + peso + ", altura = " + altura + " WHERE name = '"+user+"'");
-                        System.out.println(st2);
                         st2.executeUpdate();
                         alertLabel.setText("Actualizado Correctamente");
                         }
