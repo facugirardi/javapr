@@ -572,6 +572,11 @@ public class profileLoginWindow extends javax.swing.JFrame {
         setColor(btn_6); 
         ind_6.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});}
+        otrosWin ow = new otrosWin();
+        ow.setVisible(true);
+
+        dispose();
+
     }//GEN-LAST:event_btn_6MousePressed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed

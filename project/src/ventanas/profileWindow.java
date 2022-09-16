@@ -572,6 +572,12 @@ public class profileWindow extends javax.swing.JFrame {
         setColor(btn_6); 
         ind_6.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
+        
+        otrosWin ow = new otrosWin();
+        ow.setVisible(true);
+
+        dispose();
+
     }//GEN-LAST:event_btn_6MousePressed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
