@@ -48,8 +48,8 @@ public class otrosWin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         sideTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        segButton = new javax.swing.JButton();
+        minButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -416,11 +416,11 @@ public class otrosWin extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Entrar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
+        segButton.setText("Entrar");
+        jPanel1.add(segButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
-        jButton2.setText("Entrar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, -1, -1));
+        minButton.setText("Entrar");
+        jPanel1.add(minButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -593,8 +593,6 @@ public class otrosWin extends javax.swing.JFrame {
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
     private javax.swing.JPanel ind_6;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -606,6 +604,8 @@ public class otrosWin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton minButton;
+    private javax.swing.JButton segButton;
     private javax.swing.JLabel sideTitle;
     private javax.swing.JPanel side_pane;
     // End of variables declaration//GEN-END:variables
