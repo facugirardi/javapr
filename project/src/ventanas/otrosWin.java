@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JPanel;
 import java.sql.*;
-import java.util.*;
 
 public class otrosWin extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
@@ -27,6 +26,7 @@ public class otrosWin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -50,9 +50,9 @@ public class otrosWin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         segButton = new javax.swing.JButton();
         minButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -79,12 +79,18 @@ public class otrosWin extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Otros");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(910, Short.MAX_VALUE)
+                .addContainerGap(443, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(429, 429, 429)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
@@ -94,6 +100,10 @@ public class otrosWin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 950, 50));
@@ -417,15 +427,20 @@ public class otrosWin extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         segButton.setText("Entrar");
+        segButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                segButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(segButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
         minButton.setText("Entrar");
+        minButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(minButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Otras Herramientas");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -436,6 +451,11 @@ public class otrosWin extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Seguimiento de Macronutrientes");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Otras Herramientas");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
@@ -530,11 +550,17 @@ public class otrosWin extends javax.swing.JFrame {
         catch(SQLException sqlException) {
             sqlException.printStackTrace();
         }
-        
-        
-        
+                
         System.exit(0);
     }//GEN-LAST:event_close
+
+    private void segButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_segButtonActionPerformed
+
+    private void minButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_minButtonActionPerformed
 
  
     public static void main(String args[]) {
@@ -600,6 +626,7 @@ public class otrosWin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

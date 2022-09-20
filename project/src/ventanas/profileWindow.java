@@ -453,7 +453,7 @@ public class profileWindow extends javax.swing.JFrame {
         wcTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         wcTitle.setForeground(new java.awt.Color(51, 51, 51));
         wcTitle.setText("Ahora ya podes utilizar todas las funciones que HomeFitness te ofrece!");
-        jPanel1.add(wcTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 860, -1));
+        jPanel1.add(wcTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 860, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
