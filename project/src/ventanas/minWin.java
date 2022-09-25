@@ -5,10 +5,12 @@ import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JPanel;
 import java.sql.*;
+import clases.Macro;
 
 public class minWin extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
     boolean sesion = mysql.checkSession();
+    private final String SQL_SELECT_USER = "SELECT usuario FROM sesiones";
 
 
     public minWin() {
@@ -25,6 +27,9 @@ public class minWin extends javax.swing.JFrame {
         closeButton = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -60,22 +65,20 @@ public class minWin extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(396, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(339, 339, 339)
+                .addContainerGap(383, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(341, 341, 341)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 50));
@@ -85,6 +88,24 @@ public class minWin extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtArea.setEditable(false);
+        txtArea.setBackground(new java.awt.Color(255, 255, 255));
+        txtArea.setColumns(20);
+        txtArea.setForeground(new java.awt.Color(0, 0, 0));
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 780, 340));
+
+        jButton1.setText("Mostrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 930, 530));
 
         pack();
@@ -107,6 +128,49 @@ public class minWin extends javax.swing.JFrame {
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
         this.dispose();
     }//GEN-LAST:event_close
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Connection cn = mysql.conectar();
+        int peso = 0;
+
+        try{
+            PreparedStatement st = cn.prepareStatement(SQL_SELECT_USER);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                String user = rs.getString("usuario");
+                try{
+                    PreparedStatement st2 = cn.prepareStatement("SELECT peso FROM users WHERE name = '"+ user + "'");
+                    ResultSet rs2 = st2.executeQuery();
+                    while(rs2.next()){
+                        peso = rs2.getInt("peso");
+
+                    }
+                    }
+                catch(SQLException sqlException) {
+                        sqlException.printStackTrace();
+                    }
+                }
+            }
+            catch(SQLException sqlException){
+                sqlException.printStackTrace();
+           }
+
+        Macro mc = new Macro(peso);
+        mc.calc();
+        
+       int cm = mc.getCm();
+       double pm = mc.getPm();
+       double cam = mc.getCam();
+       double gm = mc.getGm(); 
+       
+        
+       txtArea.setText("Estos son tus macronutrientes minimos\nCalorias Minimas: "+cm+"\nProteinas Minimas: "+pm+"\nCarbohidratos Minimos: "+cam+"\nGrasas Minimas: "+gm);
+
+
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
  
     public static void main(String args[]) {
@@ -153,8 +217,11 @@ public class minWin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel closeButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }

@@ -555,6 +555,9 @@ public class profileLoginWindow extends javax.swing.JFrame {
         setColor(btn_2); 
         ind_2.setOpaque(true);
         resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});}
+        chatbotWin cb = new chatbotWin();
+        cb.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_2MouseReleased
                                                     
 
