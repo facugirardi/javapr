@@ -101,7 +101,6 @@ public class User {
             ResultSet rs = st.executeQuery();
             
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Inicio de Sesión", JOptionPane.INFORMATION_MESSAGE);
                 PreparedStatement st2 = cn.prepareStatement("INSERT INTO sesiones(usuario, activo)" + "VALUES ('"+user+"', true)");
                 st2.executeUpdate();
                 this.login = true;

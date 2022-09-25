@@ -2,9 +2,9 @@ package ventanas;
 
 import clases.ConexionDB;
 import java.awt.Color;
-import java.sql.Connection;
 import javax.swing.JPanel;
-import java.sql.*;
+import clases.Chatbot;
+import java.lang.Thread;
 
 public class chatbotWin extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
@@ -49,6 +49,10 @@ public class chatbotWin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         sideTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        chatArea = new javax.swing.JTextArea();
+        chatBox = new javax.swing.JTextField();
+        envButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -428,10 +432,40 @@ public class chatbotWin extends javax.swing.JFrame {
         getContentPane().add(side_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        chatArea.setEditable(false);
+        chatArea.setBackground(new java.awt.Color(255, 255, 255));
+        chatArea.setColumns(20);
+        chatArea.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        chatArea.setForeground(new java.awt.Color(0, 0, 0));
+        chatArea.setRows(5);
+        jScrollPane1.setViewportView(chatArea);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 870, 360));
+
+        chatBox.setBackground(new java.awt.Color(255, 255, 255));
+        chatBox.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        chatBox.setForeground(new java.awt.Color(0, 0, 0));
+        chatBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chatBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(chatBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 570, -1));
+
+        envButton.setText("Enviar");
+        envButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                envButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(envButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
         pack();
@@ -472,7 +506,10 @@ public class chatbotWin extends javax.swing.JFrame {
        
         planesWin pm = new planesWin();
         pm.setVisible(true);
+
         this.dispose();
+
+
     }//GEN-LAST:event_btn_4MousePressed
 
     private void btn_2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MouseReleased
@@ -480,6 +517,9 @@ public class chatbotWin extends javax.swing.JFrame {
         setColor(btn_2); 
         ind_2.setOpaque(true);
         resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});}
+        chatbotWin cb = new chatbotWin();
+        cb.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_2MouseReleased
                                      
 
@@ -519,6 +559,22 @@ public class chatbotWin extends javax.swing.JFrame {
     private void closeButton1close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButton1close
         System.exit(0);
     }//GEN-LAST:event_closeButton1close
+
+    private void chatBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chatBoxActionPerformed
+
+    private void envButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_envButtonActionPerformed
+        String pregunta = chatBox.getText();
+        chatBox.setText("");
+        
+        Chatbot cb = new Chatbot(pregunta);
+        cb.responder();
+        
+        String resp = cb.getRespuesta();
+        chatArea.append("Vos --> "+pregunta+"\n");
+        chatArea.append("Bot --> "+resp+"\n");
+    }//GEN-LAST:event_envButtonActionPerformed
 
  
     public static void main(String args[]) {
@@ -570,8 +626,11 @@ public class chatbotWin extends javax.swing.JFrame {
     private javax.swing.JPanel btn_4;
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
+    private javax.swing.JTextArea chatArea;
+    private javax.swing.JTextField chatBox;
     private javax.swing.JLabel closeButton;
     private javax.swing.JLabel closeButton1;
+    private javax.swing.JButton envButton;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
@@ -587,6 +646,7 @@ public class chatbotWin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel sideTitle;
     private javax.swing.JPanel side_pane;
     // End of variables declaration//GEN-END:variables
