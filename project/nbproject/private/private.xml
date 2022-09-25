@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/ventanas/otrosWin.java</file>
+            <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/ventanas/minWin.java</file>
             <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/ventanas/mainMenu.java</file>
             <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/ventanas/profileWindow.java</file>
+            <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/files/Client.java</file>
             <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/ventanas/profileLoginWindow.java</file>
-            <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/ventanas/planesWin.java</file>
+            <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/files/User.java</file>
+            <file>file:/C:/Users/Damian/OneDrive/hb_g8/project/src/files/ConexionDB.java</file>
         </group>
     </open-files>
 </project-private>

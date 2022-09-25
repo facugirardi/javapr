@@ -2,10 +2,11 @@ package ventanas;
 
 import java.awt.Color;
 import javax.swing.JPanel;
-import files.ConexionDB;
+import clases.ConexionDB;
 import javax.swing.*;
 import java.util.*;
 import java.sql.*;
+import clases.User;
 
 public class profileLoginWindow extends javax.swing.JFrame {
     
@@ -59,6 +60,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
         topPanel = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
         sideTitle1 = new javax.swing.JLabel();
+        closeButton1 = new javax.swing.JLabel();
         sidePanel = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -116,6 +118,13 @@ public class profileLoginWindow extends javax.swing.JFrame {
         sideTitle1.setForeground(new java.awt.Color(255, 255, 255));
         sideTitle1.setText("Perfil");
 
+        closeButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
+        closeButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                closeButton1MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
@@ -123,20 +132,24 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
                 .addContainerGap(457, Short.MAX_VALUE)
                 .addComponent(sideTitle1)
-                .addGap(417, 417, 417)
+                .addGap(374, 374, 374)
+                .addComponent(closeButton1)
+                .addGap(18, 18, 18)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(topPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(sideTitle1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(closeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(topPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 950, 50));
@@ -515,7 +528,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
         mainMenu mm = new mainMenu();
         mm.setVisible(true);
 
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btn_1MousePressed
 
     private void btn_3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MousePressed
@@ -532,7 +545,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
         planesWin pm = new planesWin();
         pm.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_4MousePressed
 
@@ -575,119 +588,44 @@ public class profileLoginWindow extends javax.swing.JFrame {
         otrosWin ow = new otrosWin();
         ow.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_6MousePressed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
 
         String user = userText.getText();
-        String password = passText.getText();
+        String pass = passText.getText();
         
-        try {
-            ConexionDB mysql = new ConexionDB();
-            Connection cn = mysql.conectar();
+        User usuario = new User(user, pass);
+        usuario.login(usuario.getUser(), usuario.getPass());
+                        
 
-            PreparedStatement st = (PreparedStatement) cn.prepareStatement("SELECT name, password FROM users WHERE name = ? and password = ?");
-
-            st.setString(1, user);
-            st.setString(2, password);
-            ResultSet rs = st.executeQuery();
-            
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Inicio de Sesión", JOptionPane.INFORMATION_MESSAGE);
-                profileWindow pw2 = new profileWindow();
-                PreparedStatement st2 = cn.prepareStatement("INSERT INTO sesiones(usuario, activo)" + "VALUES ('"+user+"', true)");
-                st2.executeUpdate();
-                dispose();
-                pw2.setVisible(true);
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos", "Login Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        }   
-        
+        if(usuario.isLogin()){
+            profileWindow pw2 = new profileWindow();
+            pw2.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        List listUsers = new LinkedList();
-
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
+        String name = userText.getText();
+        String pass = passText.getText();
         
-        String name, pass = "";
-        String sSQL = "";
-        
-        name = userText.getText();
-        pass = passText.getText();
-        
-        sSQL = "INSERT INTO users(name, password)" + "VALUES(?, ?)";
-       
-        
-        if (name.isEmpty() || pass.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No ingresaste ningún dato.", "Error", JOptionPane.ERROR_MESSAGE);
-
-    }   else {
-            try{
-             String SQL = "SELECT name FROM users";
-             PreparedStatement pstmt = cn.prepareStatement(SQL);
-             ResultSet rs = pstmt.executeQuery();            
-
-             while (rs.next()) {
-             String username = rs.getString("name");
-             listUsers.add(username);
-             }
-
-             boolean userVerif = listUsers.contains(name);
-
-             if (userVerif){
-             JOptionPane.showMessageDialog(null, "Este usuario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-             }
-
-             else{
-                 try{
-                     PreparedStatement pst = cn.prepareStatement(sSQL);
-                     pst.setString(1, name);
-                     pst.setString(2, pass);
-                     
-                     int n = pst.executeUpdate();
-
-                     if(n>0){
-                         JOptionPane.showMessageDialog(null, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
-                     }
-
-                 } catch(SQLException ex){
-                     JOptionPane.showMessageDialog(null, "Registro Fallido" + ex, "Error", JOptionPane.ERROR_MESSAGE);
-                 }
-             }
-
-         } catch (SQLException ex){
-             JOptionPane.showMessageDialog(null, "Hubo un error en el registro." + ex, "Error", JOptionPane.ERROR_MESSAGE);
-         }
-
-        }
+        User usuario = new User(name, pass);
+        usuario.register(usuario.getUser(), usuario.getPass());
                 
         userText.setText("");
         passText.setText("");
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
-        try{
-        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
-        st.executeUpdate();
-        }
-        catch(SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-        
-        
-        
-        System.exit(0);
+        mysql.close();
     }//GEN-LAST:event_close
+
+    private void closeButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButton1MousePressed
+        System.exit(0);
+    }//GEN-LAST:event_closeButton1MousePressed
 
  
     public static void main(String args[]) {
@@ -740,6 +678,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
+    private javax.swing.JLabel closeButton1;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;

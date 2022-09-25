@@ -1,6 +1,8 @@
-package files;
+package clases;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ConexionDB {
@@ -20,6 +22,21 @@ public class ConexionDB {
     return conectar;   
     }
     
+    public void close(){
+        ConexionDB mysql = new ConexionDB();
+        Connection cn = mysql.conectar();
+        try{
+        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
+        st.executeUpdate();
+        cn.close();
+        }
+        catch(SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        
+        System.exit(0);
+        
+    } 
     
     public boolean checkSession(){  
         ResultSet rs = null;
@@ -42,6 +59,7 @@ public class ConexionDB {
         return false;
     }
 
+    }
     
     
-}
+

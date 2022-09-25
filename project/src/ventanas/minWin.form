@@ -77,7 +77,7 @@
         <Component class="javax.swing.JLabel" name="closeButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ventanas/images/icons8_Exit_25px.png"/>
+              <Image iconType="3" name="/ventanas/images/icons8_Multiply_25px.png"/>
             </Property>
           </Properties>
           <Events>

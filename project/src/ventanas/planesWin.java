@@ -1,12 +1,14 @@
 package ventanas;
 
-import files.ConexionDB;
+import clases.ConexionDB;
 import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JPanel;
 import java.sql.*;
 import java.io.*;
 import java.awt.Desktop;
+import clases.PlanAlimentacion;
+import clases.PlanEjercicio;
 
 public class planesWin extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
@@ -34,6 +36,7 @@ public class planesWin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
+        closeButton1 = new javax.swing.JLabel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -91,12 +94,21 @@ public class planesWin extends javax.swing.JFrame {
             }
         });
 
+        closeButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
+        closeButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                closeButton1close(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(910, Short.MAX_VALUE)
+                .addContainerGap(867, Short.MAX_VALUE)
+                .addComponent(closeButton1)
+                .addGap(18, 18, 18)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
@@ -104,7 +116,9 @@ public class planesWin extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(closeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -484,7 +498,7 @@ public class planesWin extends javax.swing.JFrame {
         mainMenu mm = new mainMenu();
         mm.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_1MousePressed
 
@@ -500,7 +514,7 @@ public class planesWin extends javax.swing.JFrame {
         }else{
             pw.setVisible(true);
         }
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btn_3MousePressed
 
 
@@ -550,29 +564,15 @@ public class planesWin extends javax.swing.JFrame {
         otrosWin ow = new otrosWin();
         ow.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_6MousePressed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
-        try{
-        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
-        st.executeUpdate();
-        }
-        catch(SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-        
-        
-        
-        System.exit(0);
+        mysql.close();
     }//GEN-LAST:event_close
 
     private void alimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alimButtonActionPerformed
-        String home = System.getProperty("user.home");
-        File file = new File(home+"/Downloads/"+"plan_alimentacion.txt");
         ConexionDB mysql = new ConexionDB();
         Connection cn = mysql.conectar();
         
@@ -606,126 +606,20 @@ public class planesWin extends javax.swing.JFrame {
             }
         
         
+        PlanAlimentacion pa = new PlanAlimentacion(peso, altura, objetivo);
+        pa.planAl();
         
-        String contents = "test";
-        
-        try (Writer writer = new BufferedWriter(new FileWriter(file))) {
-            if((peso >= 45 && peso <= 60)&&(altura >= 150 && altura <= 180)){
-                if(null != objetivo)switch (objetivo) {
-                    case "Mantener":
-                        contents = "Balance entre proteinas, fibras, vitaminas, minerales e hidratos de carbono." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: cafe - té - cafe con leche descremada - yogourt - mate - mate cocido - frutas."
-                                + System.getProperty("line.separator") + "- Comidas y cenas: Huevo duro - carne de cerdo, vaca y pollo - vegetales - frutas.";
-                        break;
-                    case "Aumentar":
-                        contents = "Dieta alta hidratos de carbono y proteinas." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: cafe - cafe con leche - leche."
-                                + System.getProperty("line.separator") + "- Comidas y cenas: carne de cerdo, vaca y pollo - verdura (batata y papa).";
-                        break;
-                    case "Adelgazar":
-                        contents = "No es recomendable bajar de peso";
-                        break;
-                    default:
-                        break;
-                }
-                
-                    ejLabel.setText("");
-                    ejLabel2.setText("");
-                    alLabel.setText("Se Descargó Correctamente");
-                    alLabel2.setText("En La Carpeta 'Downloads'");
-
-            }
-            else if((peso >= 60 && peso <= 75)&&(altura >= 150 && altura <= 180)){
-                                System.out.println(objetivo);
-
-                if(null != objetivo)switch (objetivo) {
-                    case "Mantener":
-                        contents = "Balance entre proteinas, Fibras, vitaminas, minerales e hidratos de carbono." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: cafe - té - cafe con leche descremada - yogourt - mate - mate cocido - frutas."
-                                + System.getProperty("line.separator") + "- Comidas y cenas: Huevo duro - carne de cerdo, vaca y pollo - vegetales - frutas";
-                        break;
-                    case "Aumentar":
-                        contents = "Dieta alta hidratos de carbono y proteinas." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: cafe - cafe con leche - leche."
-                                + System.getProperty("line.separator") + "- Comidas y cenas:  carne de cerdo, vaca y pollo - verdura(batata y papa).";
-                        break;
-                    case "Adelgazar":
-                        System.out.println("2222");
-                        contents = "Dieta alta en comidas naturales bajas en hidratos de carbono." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: frutas - té."
-                                + System.getProperty("line.separator") + "- Comidas y cenas: verduras, carnes.";
-                        break;
-                    default:
-                        break;
-                }
-                
-                    ejLabel.setText("");
-                    ejLabel2.setText("");
-                    alLabel.setText("Se Descargó Correctamente");
-                    alLabel2.setText("En La Carpeta 'Downloads'");
-
-                
-            }
-            else if((peso >= 70 && peso <= 100)&&(altura >= 150 && altura <= 180)){
-                if(null != objetivo)switch (objetivo) {
-                    case "Mantener":
-                        contents = "Balance entre proteinas, Fibras, vitaminas, minerales e hidratos de carbono." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: cafe - té - cafe con leche descremada - yogourt - mate - mate cocido - frutas."
-                                + System.getProperty("line.separator") + "- Comidas y cenas: Huevo duro - carne de cerdo, vaca y pollo - vegetales - frutas";
-                        break;
-                    case "Aumentar":
-                        contents = "Dieta alta hidratos de carbono y proteinas." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: cafe - cafe con leche - leche."
-                                + System.getProperty("line.separator") + "- Comidas y cenas:  carne de cerdo, vaca y pollo - verdura(batata y papa).";
-                        break;
-                    case "Adelgazar":
-                        contents = "Dieta alta en comidas naturales bajas en hidratos de carbono." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: frutas - té."
-                                + System.getProperty("line.separator") + "- Comidas y cenas: verduras, carnes.";
-                        break;
-                    default:
-                        break;
-                }
-                    ejLabel.setText("");
-                    ejLabel2.setText("");
-                    alLabel.setText("Se Descargó Correctamente");
-                    alLabel2.setText("En La Carpeta 'Downloads'");
-                
-            }
-            else if((peso >= 100 && peso <= 140)&&(altura >= 150 && altura <= 180)){
-                if(null != objetivo)switch (objetivo) {
-                    case "Adelgazar":
-                        contents = "Dieta alta en comidas naturales bajas en hidratos de carbono." +
-                                System.getProperty("line.separator") + "- Desayunos y meriendas: frutas - té."
-                                + System.getProperty("line.separator") + "- Comidas y cenas: verduras, carnes.";
-                        break;
-                    case "Aumentar":
-                        contents = "No es recomendable aumentar de peso";
-                        break;
-                    case "Mantener":
-                        contents = "No es recomendable mantener este peso";
-                        break;
-                    default:
-                        break;
-                }
-                
-                ejLabel.setText("");
-                ejLabel2.setText("");
-                alLabel.setText("Se Descargó Correctamente");
-                alLabel2.setText("En La Carpeta 'Downloads'");
-
-            }
-            else{
-                    ejLabel.setText("");
-                    ejLabel2.setText("");
-                    alLabel.setText("No Encontramos Planes");
-                    alLabel2.setText("Adecuados Para Vos");
-            }
-
-            
-        writer.write(contents);
-        } catch (IOException e) {
-            System.out.println(e);
+        if (pa.isText1()){
+            ejLabel.setText("");
+            ejLabel2.setText("");
+            alLabel.setText("Se Descargó Correctamente");
+            alLabel2.setText("En La Carpeta 'Downloads'");
+        }
+        if(pa.isText2()){
+            ejLabel.setText("");
+            ejLabel2.setText("");
+            alLabel.setText("No Encontramos Planes");
+            alLabel2.setText("Adecuados Para Vos");
         }
 
 
@@ -733,8 +627,6 @@ public class planesWin extends javax.swing.JFrame {
 
     private void ejerciciosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejerciciosButtonActionPerformed
      
-        String home = System.getProperty("user.home");
-        File file = new File(home+"/Downloads/"+"plan_ejercicios.txt"); 
         ConexionDB mysql = new ConexionDB();
         Connection cn = mysql.conectar();
         
@@ -762,56 +654,21 @@ public class planesWin extends javax.swing.JFrame {
                 sqlException.printStackTrace();
             }
         
-        String contents = "";
+        PlanEjercicio pe = new PlanEjercicio(objetivo);
+        pe.planEj();
         
-        try (Writer writer = new BufferedWriter(new FileWriter(file))) {
-                if(null == objetivo){
-                    alLabel.setText("");
-                    alLabel2.setText("");
-                    ejLabel.setText("No Encontramos Planes");
-                    ejLabel2.setText("Adecuados Para Vos");
-                }
-                else switch (objetivo) {
-                case "Mantener":
-                    contents = "4 ejercicios para mantener tu peso." +
-                            System.getProperty("line.separator") + "- Burpees, Squat Jumps, Desplantes con salto, Jumping Jacks"
-                            + System.getProperty("line.separator") + "Te tomarán unos minutos de tu día y no hay necesidad de salir de tu casa para realizarlas.";
-                    alLabel.setText("");
-                    alLabel2.setText("");
-                    ejLabel.setText("Se Descargó Correctamente");
-                    ejLabel2.setText("En La Carpeta 'Downloads'");
-                    break;
-                case "Aumentar":
-                    contents = "Ejercicios para ganar masa muscular en casa." +
-                            System.getProperty("line.separator") + "- Sentadillas con peso, Press con barras y pesas, Plancha arriba y abajo"
-                            + System.getProperty("line.separator") + "- Zancadas y saltos, 'Press' de pecho en banco plano con peso, Levantamiento de mancuernas";
-                    alLabel.setText("");
-                    alLabel2.setText("");
-                    ejLabel.setText("Se Descargó Correctamente");
-                    ejLabel2.setText("En La Carpeta 'Downloads'");
-                    break;
-                case "Adelgazar":
-                    contents = "Siete ejercicios fáciles para perder peso entrenando en casa y realizar tambien un deficit calorico"
-                            + System.getProperty("line.separator") + "- Sentadillas, Flexiones, Plancha abdominal, Cardio"
-                            + System.getProperty("line.separator") + "- Burpees, Escaladores, Zancadas";
-                    alLabel.setText("");
-                    alLabel2.setText("");
-                    ejLabel.setText("Se Descargó Correctamente");
-                    ejLabel2.setText("En La Carpeta 'Downloads'");
-                    break;
-                default:
-                        alLabel.setText("");
-                        alLabel2.setText("");
-                        ejLabel.setText("No Encontramos Planes");
-                        ejLabel2.setText("Adecuados Para Vos");
-                    break;
-            }
-
-            
-            writer.write(contents);
-        } catch (IOException e) {
+        if (pe.isText1()){
+            alLabel.setText("");
+            alLabel2.setText("");
+            ejLabel.setText("Se Descargó Correctamente");
+            ejLabel2.setText("En La Carpeta 'Downloads'");
         }
-
+        if(pe.isText2()){
+            alLabel.setText("");
+            alLabel2.setText("");
+            ejLabel.setText("No Encontramos Planes");
+            ejLabel2.setText("Adecuados Para Vos");
+        }
 
     }//GEN-LAST:event_ejerciciosButtonActionPerformed
 
@@ -822,6 +679,10 @@ public class planesWin extends javax.swing.JFrame {
         }catch(IOException e){
         }
     }//GEN-LAST:event_downloadActionPerformed
+
+    private void closeButton1close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButton1close
+        System.exit(0);
+    }//GEN-LAST:event_closeButton1close
 
  
     public static void main(String args[]) {
@@ -877,6 +738,7 @@ public class planesWin extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
+    private javax.swing.JLabel closeButton1;
     private javax.swing.JButton download;
     private javax.swing.JLabel ejLabel;
     private javax.swing.JLabel ejLabel2;

@@ -1,6 +1,6 @@
 package ventanas;
 
-import files.ConexionDB;
+import clases.ConexionDB;
 import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JPanel;
@@ -44,7 +44,7 @@ public class minWin extends javax.swing.JFrame {
             }
         });
 
-        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Exit_25px.png"))); // NOI18N
+        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 close(evt);

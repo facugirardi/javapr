@@ -2,10 +2,11 @@ package ventanas;
 
 import java.awt.Color;
 import javax.swing.JPanel;
-import files.ConexionDB;
+import clases.ConexionDB;
 import javax.swing.*;
 import java.util.*;
 import java.sql.*;
+import clases.User;
 
 public class profileWindow extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
@@ -45,6 +46,7 @@ public class profileWindow extends javax.swing.JFrame {
         topPanel = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
         sideTitle1 = new javax.swing.JLabel();
+        closeButton1 = new javax.swing.JLabel();
         sidePanel = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -106,6 +108,13 @@ public class profileWindow extends javax.swing.JFrame {
         sideTitle1.setForeground(new java.awt.Color(255, 255, 255));
         sideTitle1.setText("Perfil");
 
+        closeButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
+        closeButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                closeButton1close(evt);
+            }
+        });
+
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
@@ -113,20 +122,24 @@ public class profileWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
                 .addContainerGap(457, Short.MAX_VALUE)
                 .addComponent(sideTitle1)
-                .addGap(417, 417, 417)
+                .addGap(374, 374, 374)
+                .addComponent(closeButton1)
+                .addGap(18, 18, 18)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(topPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(sideTitle1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(closeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(topPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 950, 50));
@@ -518,7 +531,7 @@ public class profileWindow extends javax.swing.JFrame {
         mainMenu mm = new mainMenu();
         mm.setVisible(true);
 
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btn_1MousePressed
 
     private void btn_3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MousePressed
@@ -535,7 +548,7 @@ public class profileWindow extends javax.swing.JFrame {
         planesWin pm = new planesWin();
         pm.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_4MousePressed
 
@@ -576,24 +589,12 @@ public class profileWindow extends javax.swing.JFrame {
         otrosWin ow = new otrosWin();
         ow.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_6MousePressed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
-        try{
-        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
-        st.executeUpdate();
-        }
-        catch(SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-        
-        
-        
-        System.exit(0);
+        mysql.close();
     }//GEN-LAST:event_close
 
     private void objetivoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_objetivoBoxActionPerformed
@@ -617,14 +618,11 @@ public class profileWindow extends javax.swing.JFrame {
 
                 while (rs.next()) {
                     String user = rs.getString("usuario");
-                    try{
-                        PreparedStatement st2 = cn.prepareStatement("UPDATE users SET objetivo = '"+ objetivo +"',peso = " + peso + ", altura = " + altura + " WHERE name = '"+user+"'");
-                        st2.executeUpdate();
+                    User usuario = new User(user, objetivo, peso, altura);
+                    usuario.actualizar();
+                    if(usuario.isAct()){
                         alertLabel.setText("Actualizado Correctamente");
-                        }
-                    catch(SQLException sqlException) {
-                            sqlException.printStackTrace();
-                        }
+                    }
                     }
                 }
                 catch(SQLException sqlException){
@@ -636,6 +634,10 @@ public class profileWindow extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void closeButton1close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButton1close
+    System.exit(0);
+    }//GEN-LAST:event_closeButton1close
 
  
     public static void main(String args[]) {
@@ -690,6 +692,7 @@ public class profileWindow extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
+    private javax.swing.JLabel closeButton1;
     private javax.swing.JButton guardar;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;

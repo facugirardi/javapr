@@ -1,6 +1,6 @@
 package ventanas;
 
-import files.ConexionDB;
+import clases.ConexionDB;
 import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JPanel;
@@ -27,6 +27,7 @@ public class otrosWin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        closeButton1 = new javax.swing.JLabel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -83,27 +84,38 @@ public class otrosWin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Otros");
 
+        closeButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
+        closeButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                closeButton1close(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(443, Short.MAX_VALUE)
+                .addContainerGap(444, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(429, 429, 429)
+                .addGap(386, 386, 386)
+                .addComponent(closeButton1)
+                .addGap(18, 18, 18)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(closeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 950, 50));
@@ -469,7 +481,7 @@ public class otrosWin extends javax.swing.JFrame {
         mainMenu mm = new mainMenu();
         mm.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_1MousePressed
 
@@ -485,7 +497,7 @@ public class otrosWin extends javax.swing.JFrame {
         }else{
             pw.setVisible(true);
         }
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btn_3MousePressed
 
 
@@ -498,7 +510,7 @@ public class otrosWin extends javax.swing.JFrame {
         planesWin pm = new planesWin();
         pm.setVisible(true);
 
-        dispose();
+        this.dispose();
 
 
     }//GEN-LAST:event_btn_4MousePressed
@@ -541,17 +553,7 @@ public class otrosWin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_6MousePressed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
-        try{
-        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
-        st.executeUpdate();
-        }
-        catch(SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-                
-        System.exit(0);
+        mysql.close();
     }//GEN-LAST:event_close
 
     private void segButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segButtonActionPerformed
@@ -559,8 +561,13 @@ public class otrosWin extends javax.swing.JFrame {
     }//GEN-LAST:event_segButtonActionPerformed
 
     private void minButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minButtonActionPerformed
-        // TODO add your handling code here:
+        minWin mw = new minWin();
+        mw.setVisible(true);
     }//GEN-LAST:event_minButtonActionPerformed
+
+    private void closeButton1close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButton1close
+        System.exit(0);
+    }//GEN-LAST:event_closeButton1close
 
  
     public static void main(String args[]) {
@@ -613,6 +620,7 @@ public class otrosWin extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
+    private javax.swing.JLabel closeButton1;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;

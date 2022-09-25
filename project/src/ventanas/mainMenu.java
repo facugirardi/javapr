@@ -1,6 +1,6 @@
 package ventanas;
 
-import files.ConexionDB;
+import clases.ConexionDB;
 import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JPanel;
@@ -58,6 +58,7 @@ public class mainMenu extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
+        closeWin = new javax.swing.JLabel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -108,20 +109,31 @@ public class mainMenu extends javax.swing.JFrame {
             }
         });
 
+        closeWin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
+        closeWin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                closeWinclose(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(910, Short.MAX_VALUE)
+                .addContainerGap(867, Short.MAX_VALUE)
+                .addComponent(closeWin)
+                .addGap(18, 18, 18)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(closeWin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -468,6 +480,7 @@ public class mainMenu extends javax.swing.JFrame {
         resetColor(new JPanel[]{btn_2,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_4, ind_5, ind_6});
     }//GEN-LAST:event_btn_1MousePressed
 
+
     private void btn_3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MousePressed
         setColor(btn_3); 
         ind_3.setOpaque(true);
@@ -480,7 +493,7 @@ public class mainMenu extends javax.swing.JFrame {
         }else{
             pw.setVisible(true);
         }
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btn_3MousePressed
 
 
@@ -493,7 +506,7 @@ public class mainMenu extends javax.swing.JFrame {
         planesWin pm = new planesWin();
         pm.setVisible(true);
 
-        dispose();
+        this.dispose();
 
 
     }//GEN-LAST:event_btn_4MousePressed
@@ -537,25 +550,17 @@ public class mainMenu extends javax.swing.JFrame {
         otrosWin ow = new otrosWin();
         ow.setVisible(true);
 
-        dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btn_6MousePressed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
-        try{
-        PreparedStatement st = cn.prepareStatement("DELETE FROM sesiones");
-        st.executeUpdate();
-        }
-        catch(SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-        
-        
-        
-        System.exit(0);
+        mysql.close();
     }//GEN-LAST:event_close
+
+    private void closeWinclose(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeWinclose
+        System.exit(0);
+    }//GEN-LAST:event_closeWinclose
 
  
     public static void main(String args[]) {
@@ -608,6 +613,7 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
+    private javax.swing.JLabel closeWin;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
