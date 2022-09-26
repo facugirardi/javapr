@@ -560,7 +560,8 @@ public class otrosWin extends javax.swing.JFrame {
     }//GEN-LAST:event_close
 
     private void segButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segButtonActionPerformed
-        // TODO add your handling code here:
+        segWin sw = new segWin();
+        sw.setVisible(true);
     }//GEN-LAST:event_segButtonActionPerformed
 
     private void minButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minButtonActionPerformed
