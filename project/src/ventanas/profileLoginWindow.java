@@ -401,11 +401,6 @@ public class profileLoginWindow extends javax.swing.JFrame {
         );
 
         sidePanel.add(btn_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 120, 40));
-        btn_5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_5MousePressed(evt);
-            }
-        });
 
         btn_6.setBackground(new java.awt.Color(18, 40, 67));
         btn_6.setPreferredSize(new java.awt.Dimension(120, 43));

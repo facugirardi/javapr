@@ -384,11 +384,6 @@ public class mainMenu extends javax.swing.JFrame {
         );
 
         side_pane.add(btn_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 120, 40));
-        btn_5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_5MousePressed(evt);
-            }
-        });
 
         btn_6.setBackground(new java.awt.Color(18, 40, 67));
         btn_6.setPreferredSize(new java.awt.Dimension(120, 43));
@@ -535,15 +530,11 @@ public class mainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_2MousePressed
 
     private void btn_5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5MousePressed
-        if(sesion){
-        setColor(btn_5);
-        ind_5.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});}
-        
         aboutWin aw = new aboutWin();
         aw.setVisible(true);
         
         this.dispose();
+
     }//GEN-LAST:event_btn_5MousePressed
 
     private void btn_6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_6MousePressed
@@ -551,7 +542,6 @@ public class mainMenu extends javax.swing.JFrame {
         setColor(btn_6); 
         ind_6.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});}
-        
         otrosWin ow = new otrosWin();
         ow.setVisible(true);
 
