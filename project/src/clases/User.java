@@ -88,7 +88,7 @@ public class User {
     
     
     
-    public void login(String user, String pass){
+    public void login(){
             
         try {
             ConexionDB mysql = new ConexionDB();
@@ -96,12 +96,12 @@ public class User {
 
             PreparedStatement st = (PreparedStatement) cn.prepareStatement("SELECT name, password FROM users WHERE name = ? and password = ?");
 
-            st.setString(1, user);
-            st.setString(2, pass);
+            st.setString(1, this.usuario);
+            st.setString(2, this.password);
             ResultSet rs = st.executeQuery();
             
             if (rs.next()) {
-                PreparedStatement st2 = cn.prepareStatement("INSERT INTO sesiones(usuario, activo)" + "VALUES ('"+user+"', true)");
+                PreparedStatement st2 = cn.prepareStatement("INSERT INTO sesiones(usuario, activo)" + "VALUES ('"+this.usuario+"', true)");
                 st2.executeUpdate();
                 this.login = true;
 

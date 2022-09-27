@@ -144,7 +144,7 @@ public class segWin extends javax.swing.JFrame {
                     + mc.getCarb()+"\nGrasas Totales: "+mc.getGrasas();
             txtArea.setText(texto);
         }
-        
+    
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

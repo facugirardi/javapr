@@ -2,10 +2,7 @@ package ventanas;
 
 import clases.ConexionDB;
 import java.awt.Color;
-import java.sql.Connection;
 import javax.swing.JPanel;
-import java.sql.*;
-import java.util.*;
 
 public class mainMenu extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
@@ -365,7 +362,7 @@ public class mainMenu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("VIP");
+        jLabel1.setText("Acerca de");
 
         javax.swing.GroupLayout btn_5Layout = new javax.swing.GroupLayout(btn_5);
         btn_5.setLayout(btn_5Layout);
@@ -374,8 +371,8 @@ public class mainMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_5Layout.createSequentialGroup()
                 .addComponent(ind_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         btn_5Layout.setVerticalGroup(
             btn_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -542,6 +539,11 @@ public class mainMenu extends javax.swing.JFrame {
         setColor(btn_5);
         ind_5.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});}
+        
+        aboutWin aw = new aboutWin();
+        aw.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_btn_5MousePressed
 
     private void btn_6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_6MousePressed

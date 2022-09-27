@@ -1,8 +1,6 @@
 package clases;
 
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ConexionDB {

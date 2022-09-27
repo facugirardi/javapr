@@ -2,30 +2,17 @@ package ventanas;
 
 import clases.ConexionDB;
 import java.awt.Color;
-import java.sql.Connection;
 import javax.swing.JPanel;
-import java.sql.*;
-import java.io.*;
-import java.awt.Desktop;
-import clases.PlanAlimentacion;
-import clases.PlanEjercicio;
 
-public class planesWin extends javax.swing.JFrame {
+public class aboutWin extends javax.swing.JFrame {
     ConexionDB mysql = new ConexionDB();
     boolean sesion = mysql.checkSession();
-    private final String SQL_SELECT_USER = "SELECT usuario FROM sesiones";
 
-
-    public planesWin() {
+    public aboutWin() {
         initComponents();
-        setColor(btn_4); 
-        ind_4.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1, btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6}); 
-        
-        ejLabel.setText("");
-        ejLabel2.setText("");
-        alLabel2.setText("");
-        alLabel.setText("");
+        setColor(btn_5); 
+        ind_5.setOpaque(true);
+        resetColor(new JPanel[]{btn_2,btn_3,btn_4, btn_1, btn_6}, new JPanel[]{ind_2,ind_3, ind_4, ind_1, ind_6}); 
 
     }
 
@@ -36,7 +23,7 @@ public class planesWin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         closeButton = new javax.swing.JLabel();
-        closeButton1 = new javax.swing.JLabel();
+        closeWin = new javax.swing.JLabel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -60,14 +47,10 @@ public class planesWin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        alimButton = new javax.swing.JButton();
-        ejerciciosButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        ejLabel = new javax.swing.JLabel();
-        ejLabel2 = new javax.swing.JLabel();
-        alLabel = new javax.swing.JLabel();
-        alLabel2 = new javax.swing.JLabel();
-        download = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -94,10 +77,10 @@ public class planesWin extends javax.swing.JFrame {
             }
         });
 
-        closeButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
-        closeButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        closeWin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventanas/images/icons8_Multiply_25px.png"))); // NOI18N
+        closeWin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                closeButton1close(evt);
+                closeWinclose(evt);
             }
         });
 
@@ -107,18 +90,18 @@ public class planesWin extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(867, Short.MAX_VALUE)
-                .addComponent(closeButton1)
+                .addComponent(closeWin)
                 .addGap(18, 18, 18)
                 .addComponent(closeButton)
                 .addGap(15, 15, 15))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(closeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(closeWin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -359,8 +342,8 @@ public class planesWin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_5Layout.createSequentialGroup()
                 .addComponent(ind_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         btn_5Layout.setVerticalGroup(
             btn_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,49 +425,41 @@ public class planesWin extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Planes de Alimentación");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("Sobre HomeFitness");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 480, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Planes de Ejercicios");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
-
-        alimButton.setText("Descargar");
-        alimButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alimButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(alimButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 150, 30));
-
-        ejerciciosButton.setText("Descargar");
-        ejerciciosButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ejerciciosButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ejerciciosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 150, 30));
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Servicio al Cliente: +54 351 272 7800");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 630, -1));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Se descargaran los planes elegidos especialmente para vos, según tus datos de usuario guardados.");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 840, -1));
-        jPanel1.add(ejLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 150, -1));
-        jPanel1.add(ejLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 150, -1));
-        jPanel1.add(alLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, 150, -1));
-        jPanel1.add(alLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 170, -1));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("HomeFitness es una aplicacion de un gimnasio en tu casa");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 630, -1));
 
-        download.setText("Carpeta 'Downloads'");
-        download.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                downloadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(download, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 140, 30));
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("diseñada exclusivamente para vos!");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 630, -1));
+
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Contacto: ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 630, -1));
+
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("E-Mail: homefitness5c@gmail.com");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 630, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 940, 530));
 
@@ -497,10 +472,9 @@ public class planesWin extends javax.swing.JFrame {
         resetColor(new JPanel[]{btn_2,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_4, ind_5, ind_6});
         mainMenu mm = new mainMenu();
         mm.setVisible(true);
-
         this.dispose();
-
     }//GEN-LAST:event_btn_1MousePressed
+
 
     private void btn_3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MousePressed
         setColor(btn_3); 
@@ -508,29 +482,29 @@ public class planesWin extends javax.swing.JFrame {
         resetColor(new JPanel[]{btn_2,btn_1,btn_4,btn_5, btn_6}, new JPanel[]{ind_2,ind_1, ind_4, ind_5, ind_6});
         
         profileWindow pwn = new profileWindow();
-        profileLoginWindow pw = new profileLoginWindow();
-        if(sesion){
-            pwn.setVisible(true);
-        }else{
-            pw.setVisible(true);
-        }
+        pwn.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_btn_3MousePressed
 
 
     private void btn_4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MousePressed
-       if(sesion){
         setColor(btn_4); 
         ind_4.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6});}
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_5, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_5, ind_6});
+       
+        planesWin pm = new planesWin();
+        pm.setVisible(true);
+
+        this.dispose();
+
 
     }//GEN-LAST:event_btn_4MousePressed
 
     private void btn_2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MouseReleased
-        if(sesion){
         setColor(btn_2); 
         ind_2.setOpaque(true);
-        resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});}
+        resetColor(new JPanel[]{btn_1,btn_3,btn_4,btn_5, btn_6}, new JPanel[]{ind_1,ind_3, ind_4, ind_5, ind_6});
         chatbotWin cb = new chatbotWin();
         cb.setVisible(true);
         this.dispose();
@@ -553,151 +527,30 @@ public class planesWin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_2MousePressed
 
     private void btn_5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5MousePressed
-        if(sesion){
         setColor(btn_5);
         ind_5.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});}
-        aboutWin aw = new aboutWin();
-        aw.setVisible(true);
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});
         
-        this.dispose();
     }//GEN-LAST:event_btn_5MousePressed
 
     private void btn_6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_6MousePressed
-        if(sesion){
         setColor(btn_6); 
         ind_6.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});}
+        resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_5}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_5});
+        
         otrosWin ow = new otrosWin();
         ow.setVisible(true);
 
         this.dispose();
-
     }//GEN-LAST:event_btn_6MousePressed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
         mysql.close();
     }//GEN-LAST:event_close
 
-    private void alimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alimButtonActionPerformed
-        Connection cn = mysql.conectar();
-        
-        int peso = 0;
-        int altura = 0;
-        String objetivo = "Mantener";   
-
-        try{
-            PreparedStatement st = cn.prepareStatement(SQL_SELECT_USER);
-            ResultSet rs = st.executeQuery();
-
-            while (rs.next()) {
-                String user = rs.getString("usuario");
-                try{
-                    PreparedStatement st2 = cn.prepareStatement("SELECT objetivo, peso, altura FROM users WHERE name = '"+ user + "'");
-                    ResultSet rs2 = st2.executeQuery();
-                    while(rs2.next()){
-                        objetivo = rs2.getString("objetivo");
-                        peso = rs2.getInt("peso");
-                        altura = rs2.getInt("altura");
-
-                    }
-                    }
-                catch(SQLException sqlException) {
-                        sqlException.printStackTrace();
-                    }
-                }
-            }
-            catch(SQLException sqlException){
-                sqlException.printStackTrace();
-            }
-        
-        
-        PlanAlimentacion pa = new PlanAlimentacion(peso, altura, objetivo);
-        pa.planAl();
-        
-        if (pa.isText1()){
-            ejLabel.setText("");
-            ejLabel2.setText("");
-            alLabel.setText("Se Descargó Correctamente");
-            alLabel2.setText("En La Carpeta 'Downloads'");
-        }
-        if(pa.isText2()){
-            ejLabel.setText("");
-            ejLabel2.setText("");
-            alLabel.setText("No Encontramos Planes");
-            alLabel2.setText("Adecuados Para Vos");
-        }
-
-
-    }//GEN-LAST:event_alimButtonActionPerformed
-
-    private void ejerciciosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejerciciosButtonActionPerformed
-     
-        ConexionDB mysql = new ConexionDB();
-        Connection cn = mysql.conectar();
-        
-        String objetivo = "Mantener";   
-
-        try{
-            PreparedStatement st = cn.prepareStatement(SQL_SELECT_USER);
-            ResultSet rs = st.executeQuery();
-
-            while (rs.next()) {
-                String user = rs.getString("usuario");
-                try{
-                    PreparedStatement st2 = cn.prepareStatement("SELECT objetivo FROM users WHERE name = '"+ user + "'");
-                    ResultSet rs2 = st2.executeQuery();
-                    while(rs.next()){
-                        objetivo = rs2.getString("objetivo");
-                    }
-                    }
-                catch(SQLException sqlException) {
-                        sqlException.printStackTrace();
-                    }
-                }
-            }
-            catch(SQLException sqlException){
-                sqlException.printStackTrace();
-            }
-        
-        PlanEjercicio pe = new PlanEjercicio(objetivo);
-        pe.planEj();
-        
-        if (pe.isText1()){
-            alLabel.setText("");
-            alLabel2.setText("");
-            ejLabel.setText("Se Descargó Correctamente");
-            ejLabel2.setText("En La Carpeta 'Downloads'");
-        }
-        if(pe.isText2()){
-            alLabel.setText("");
-            alLabel2.setText("");
-            ejLabel.setText("No Encontramos Planes");
-            ejLabel2.setText("Adecuados Para Vos");
-        }
-
-    }//GEN-LAST:event_ejerciciosButtonActionPerformed
-
-    private void downloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadActionPerformed
-        boolean win = System.getProperty("os.name").startsWith("Windows");
-        final String S = System.getProperty("file.separator");
-        
-        if(win){
-        try{
-            String home = System.getProperty("user.home");
-            Desktop.getDesktop().open(new File(home+"/Downloads/"));
-        }catch(IOException e){
-            System.out.println(e);
-        }
-        }
-        else{            
-            System.out.println("Opcion solo para Windows");
-        }
-    }//GEN-LAST:event_downloadActionPerformed
-
-    private void closeButton1close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButton1close
+    private void closeWinclose(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeWinclose
         System.exit(0);
-    }//GEN-LAST:event_closeButton1close
+    }//GEN-LAST:event_closeWinclose
 
  
     public static void main(String args[]) {
@@ -709,17 +562,17 @@ public class planesWin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(aboutWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(aboutWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(aboutWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(planesWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(aboutWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new planesWin().setVisible(true);
+                new aboutWin().setVisible(true);
             }
         });
     }
@@ -743,9 +596,6 @@ public class planesWin extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel alLabel;
-    private javax.swing.JLabel alLabel2;
-    private javax.swing.JButton alimButton;
     private javax.swing.JPanel btn_1;
     private javax.swing.JPanel btn_2;
     private javax.swing.JPanel btn_3;
@@ -753,11 +603,7 @@ public class planesWin extends javax.swing.JFrame {
     private javax.swing.JPanel btn_5;
     private javax.swing.JPanel btn_6;
     private javax.swing.JLabel closeButton;
-    private javax.swing.JLabel closeButton1;
-    private javax.swing.JButton download;
-    private javax.swing.JLabel ejLabel;
-    private javax.swing.JLabel ejLabel2;
-    private javax.swing.JButton ejerciciosButton;
+    private javax.swing.JLabel closeWin;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
@@ -767,10 +613,13 @@ public class planesWin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

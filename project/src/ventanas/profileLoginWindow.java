@@ -10,7 +10,6 @@ import clases.User;
 
 public class profileLoginWindow extends javax.swing.JFrame {
     
-    private final String SQL_SELECT_USER = "SELECT * FROM users WHERE";
     ConexionDB mysql = new ConexionDB();
     boolean sesion = mysql.checkSession();
     
@@ -380,7 +379,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("VIP");
+        jLabel1.setText("Acerca de");
 
         javax.swing.GroupLayout btn_5Layout = new javax.swing.GroupLayout(btn_5);
         btn_5.setLayout(btn_5Layout);
@@ -389,8 +388,8 @@ public class profileLoginWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_5Layout.createSequentialGroup()
                 .addComponent(ind_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         btn_5Layout.setVerticalGroup(
             btn_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,6 +580,11 @@ public class profileLoginWindow extends javax.swing.JFrame {
         setColor(btn_5); 
         ind_5.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_1,btn_4, btn_6}, new JPanel[]{ind_2,ind_3, ind_1, ind_4, ind_6});}
+        
+        aboutWin aw = new aboutWin();
+        aw.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_btn_5MousePressed
 
     private void btn_6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_6MousePressed
@@ -601,7 +605,7 @@ public class profileLoginWindow extends javax.swing.JFrame {
         String pass = passText.getText();
         
         User usuario = new User(user, pass);
-        usuario.login(usuario.getUser(), usuario.getPass());
+        usuario.login();
                         
 
         if(usuario.isLogin()){
